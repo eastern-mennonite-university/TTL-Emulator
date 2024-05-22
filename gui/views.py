@@ -3,15 +3,15 @@ from django.contrib import messages
 import serial
 # Create your views here.
 class sendCommands:
-    def home(self,request):
+    def home(self, request):
         return render(request, "index.html")    
     
-    def send(request):
-        cfreq = request.POST.get('cfreq')
-        cwidth = request.POST.get('cwidth')
-        rmin = request.POST.get('rmin')
-        rmax = request.POST.get('rmax')
-        rwidth = request.POST.get('rwidth')
+    def send(self, request):
+        cfreq = request.GET.get('cfreq')
+        cwidth = request.GET.get('cwidth')
+        rmin = request.GET.get('rmin')
+        rmax = request.GET.get('rmax')
+        rwidth = request.GET.get('rwidth')
         go = False
         if request.method == 'clock':
             if cfreq != True:

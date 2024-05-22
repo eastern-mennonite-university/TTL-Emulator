@@ -4,4 +4,5 @@ from .views import sendCommands
 
 urlpatterns = [
     path("", sendCommands().home, name="home"),
+    path('data/', sendCommands().send, name="data"),
 ]
