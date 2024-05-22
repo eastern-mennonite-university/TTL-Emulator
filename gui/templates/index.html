@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>TTL-Emulator</title>
         <!-- Bootstrap core CSS -->
-        <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css">
-        <!-- Custom styles for this template -->
-        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css' %}" type="text/css">
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-6">
                     <form method="clock" enctype="text/plain">
                         <label for="cfreq">Frequency (ex: 1 for 1Hz, 1,000 for 1kHz)</label><br/>
                         <input type="number" id="cfreq" name="cfreq"><br/>
                         <label for="cwidth">Pulse Width (ex: 1 for 1μs, 100 for 1ms)</label><br/>
-                        <input type="number" id="cwidth" name="cwidth"><br/>
+                        <input type="number" id="cwidth" name="cwidth"><br/><br/>
                         <button type="button" class="btn btn-success">Clock</button>
                     </form>
                 </div>
@@ -42,7 +41,7 @@
         <!-- Bootstrap core JavaScript
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
     </body>
 </html>

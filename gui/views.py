@@ -3,8 +3,8 @@ from django.contrib import messages
 import serial
 # Create your views here.
 class sendCommands:
-    def home(request):
-        return render(request, "index.html")
+    def home(self,request):
+        return render(request, "index.html")    
     
     def send(request):
         cfreq = request.POST.get('cfreq')
