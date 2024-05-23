@@ -1,23 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 import serial
 # Create your views here.
 class sendCommands:
     def home(self, request):
-        return render(request, "index.html")    
+        return redirect("index")    
     
     def send(self, request):
-        cfreq = request.GET.get('cfreq')
-        cwidth = request.GET.get('cwidth')
-        rmin = request.GET.get('rmin')
-        rmax = request.GET.get('rmax')
-        rwidth = request.GET.get('rwidth')
+        self.cfreq = request.GET.get('cfreq')
+        self.cwidth = request.GET.get('cwidth')
+        self.rmin = request.GET.get('rmin')
+        self.rmax = request.GET.get('rmax')
+        self.rwidth = request.GET.get('rwidth')
         go = False
         if request.method == 'clock':
-            if cfreq != True:
+            if self.cfreq != True:
                 messages.warning(request, 'Please add a clock frequency')
             else:
-                if cwidth != True:
+                if self.cwidth != True:
                     messages.warning(request, 'Please add a clock pulse width')
                 else:
                     go = True
@@ -28,21 +29,22 @@ class sendCommands:
                             pass
                         else:
                             arduino.write(bytes("clock"))
-                            arduino.write(bytes(cfreq))
-                            arduino.write(bytes(cwidth))
+                            arduino.write(bytes(self.cfreq))
+                            print(self.cfreq)
+                            arduino.write(bytes(self.cwidth))
                             arduino.write(bytes("start"))
             print("clock")
         elif request.method == 'random':
-            if rmin != True:
+            if self.rmin != True:
                 messages.warning(request, 'Please add a minimum value for the randomizer')
-            elif rmax != True:
+            elif self.rmax != True:
                 messages.warning(request, 'Please add a maximum value for the randomizer')
-            elif rmax and rmin != True:
+            elif self.rmax and self.rmin != True:
                 messages.warning(request, 'Please add randomization values')
-            elif rmin <= rmax:
+            elif self.rmin <= self.rmax:
                 messages.warning(request, 'Your minimum is larger than the maximum')
             else:
-                if rwidth != True:
+                if self.rwidth != True:
                     messages.warning(request, 'Please add a pulse width')
                 else:
                     go = True
@@ -53,9 +55,9 @@ class sendCommands:
                             pass
                         else:
                             arduino.write(bytes("random"))
-                            arduino.write(bytes(rmin))
-                            arduino.write(bytes(rmax))
-                            arduino.write(bytes(rwidth))
+                            arduino.write(bytes(self.rmin))
+                            arduino.write(bytes(self.rmax))
+                            arduino.write(bytes(self.rwidth))
                             arduino.write(bytes("start"))
         else:
             return render(request, 'index.html')
