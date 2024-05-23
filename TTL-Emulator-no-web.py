@@ -22,38 +22,27 @@ while True:
                 if data:
                     pass
                 else:
-                    arduino.write(bytes("clock"))
-                    arduino.write(bytes(cfreq))
-                    print(cfreq)
-                    arduino.write(bytes(cwidth))
-                    arduino.write(bytes("start"))
+                    arduino.write(bytes("start,clk,"+cwidth+","+cfreq))
         except Exception as e:
             print(e)
     
     elif mode == 'random':
-            print("Input Average frequency (ex: min=1 max=10 for ~10Hz")
-            rmin = input("Minimum: ")
-            rmax = input("Maximum: ")
+            rfreqc = input("Input Center Frequency: ")
             rwidth = input("Input Pulse Width (ex: 1 for 1μs, 100 for 1ms): ")
             try:
-                rmin = int(rmin)
-                rmax = int(rmax)
+                rfreqc = int(rfreqc)
                 rwidth = int(rwidth)
             except Exception as e:
                 print(e)
             go = True
             #Change COM3 to whatever port the Arduino is on
-            arduino = serial.Serial("COM3", 9660)
             try:
+                arduino = serial.Serial("COM3", 9660)
                 while go:
                     data = arduino.readline()
                     if data:
                         pass
                     else:
-                        arduino.write(bytes("random"))
-                        arduino.write(bytes(rmin))
-                        arduino.write(bytes(rmax))
-                        arduino.write(bytes(rwidth))
-                        arduino.write(bytes("start"))
+                        arduino.write(bytes("start,rand,"+rwidth+","+rfreqc))
             except Exception as e:
                 print(e)
