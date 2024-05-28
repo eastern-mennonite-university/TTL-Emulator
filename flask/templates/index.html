@@ -10,16 +10,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <form method="clock" enctype="text/plain">
+                    <form method="POST" enctype="multipart/form-data" action="{{ url_for('handle_clock') }}">
                         <label for="cfreq">Frequency (ex: 1 for 1Hz, 1,000 for 1kHz)</label><br/>
-                        <input type="number" id="cfreq" name="cfreq"><br/>
+                        <input type="number" name="cfreq"><br/>
                         <label for="cwidth">Pulse Width (ex: 1 for 1μs, 100 for 1ms)</label><br/>
-                        <input type="number" id="cwidth" name="cwidth"><br/>
+                        <input type="number" name="cwidth"><br/>
                         <button type="submit" class="btn btn-success" name="clock">Clock</button>
                     </form>
                 </div>
                 <div class="col-6">
-                    <form method="random" enctype="text/plain">
+                    <form method="POST" enctype="multipart/form-data" action="{{ url_for('handle_random') }}">
                         <label for="rfreq">Centralized Frequency (ex: 100 =&gt; ~100Hz)</label><br/>
                         <input type="number" id="rfreq" name="rfreq"><br/>                        
                         <label for="rwidth">Pulse Width (ex: 1 for 1μs, 100 for 1ms)</label><br/>
@@ -28,11 +28,13 @@
                     </form>
                 </div>
             </div>
-            <button class="btn btn-danger p-5 mb-4 bg-body-tertiary rounded-3" type="button" name="stop">
-                <div class="container-fluid py-5">
-                  <h1 class="display-5 fw-bold">STOP</h1>
-                </div>
-            </button>
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('handle_stop') }}">
+                <button class="btn btn-danger p-5 mb-4 bg-body-tertiary rounded-3" type="submit" name="stop" method="stop">
+                    <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">STOP</h1>
+                    </div>
+                </button>
+            </form>
         </div>
         <script src="bootsrap/js/popper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
