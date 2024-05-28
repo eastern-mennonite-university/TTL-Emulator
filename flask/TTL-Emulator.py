@@ -12,25 +12,24 @@ def index():
 def handle_clock():
     if request.method  == "POST":
             cfreq = request.form['cfreq']
-            print(cfreq)
+            #print(cfreq)
             cwidth = request.form['cwidth']
-            print(cwidth)
+            #print(cwidth)
             term.getMessage("start", "clk", int(cwidth), int(cfreq))
     return render_template('index.html')
 
 @app.route('/handle_random', methods=['POST'])
 def handle_random():
     if request.method == "POST":
-        rfreq = request.args('rfreq')
-        rwidth = request.args('rwidth')
-        subprocess.run("python3", "serialPythonScriptLinux.py", "rand", rwidth, rfreq)
+        rfreq = request.form['rfreq']
+        rwidth = request.form['rwidth']
+        term.getMessage("start", "rand", int(rwidth), int(rfreq))
     return render_template("index.html")
 
 @app.route('/handle_stop', methods=['POST'])
 def handle_stop():
-    go = False
     if request.method == "POST":
-        subprocess.run("python3", "serialPythonScriptLinux.py", "stop")
+        term.getMessage("stop", None, None, None)
     return render_template("index.html")
 
 if __name__ == '__main__':

@@ -11,24 +11,24 @@
             <div class="row">
                 <div class="col-6">
                     <form method="POST" enctype="multipart/form-data" action="{{ url_for('handle_clock') }}">
-                        <label for="cfreq">Frequency (ex: 1 for 1Hz, 1,000 for 1kHz)</label><br/>
-                        <input type="number" name="cfreq"><br/>
                         <label for="cwidth">Pulse Width (ex: 1 for 1μs, 100 for 1ms)</label><br/>
                         <input type="number" name="cwidth"><br/>
+                        <label for="cfreq">Frequency (ex: 1 for 1Hz, 1,000 for 1kHz)</label><br/>
+                        <input type="number" name="cfreq"><br/>
                         <button type="submit" class="btn btn-success" name="clock">Clock</button>
                     </form>
                 </div>
                 <div class="col-6">
                     <form method="POST" enctype="multipart/form-data" action="{{ url_for('handle_random') }}">
-                        <label for="rfreq">Centralized Frequency (ex: 100 =&gt; ~100Hz)</label><br/>
-                        <input type="number" id="rfreq" name="rfreq"><br/>                        
                         <label for="rwidth">Pulse Width (ex: 1 for 1μs, 100 for 1ms)</label><br/>
                         <input type="number" id="rwidth" name="rwidth"><br/>
+                        <label for="rfreq">Centralized Frequency (ex: 100 =&gt; ~100Hz)</label><br/>
+                        <input type="number" id="rfreq" name="rfreq"><br/>                        
                         <button type="submit" class="btn btn-success" name="random">Random</button>
                     </form>
                 </div>
             </div>
-            <form method="POST" enctype="multipart/form-data" action="{{ url_for('handle_stop') }}">
+            <form method="POST" action="{{ url_for('handle_stop') }}">
                 <button class="btn btn-danger p-5 mb-4 bg-body-tertiary rounded-3" type="submit" name="stop" method="stop">
                     <div class="container-fluid py-5">
                     <h1 class="display-5 fw-bold">STOP</h1>

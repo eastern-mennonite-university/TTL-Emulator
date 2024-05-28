@@ -55,9 +55,9 @@ def getMessage(start_stop,typ,pulse_width,freq):
     elif start_stop == "start":
         if freq > 400:
             sys.stdout.write("max value of frequency is 400 Hz. frequency has been set to 400 Hz")
-            sendMessage(start_stop + " " + typ + " " + str(pulse_width) + " " + "400")
+            sendMessage(start_stop + "," + typ + "," + str(pulse_width) + "," + "400")
         else:
-            sendMessage(start_stop + " " + typ + " " + str(pulse_width) + " " + str(freq))
+            sendMessage(start_stop + "," + typ + "," + str(pulse_width) + "," + str(freq))
 
 
 def main():
