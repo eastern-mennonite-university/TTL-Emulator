@@ -1,1 +1,4 @@
 HTMLwork/
+.venv/
+.vscode/
+__pycache__/

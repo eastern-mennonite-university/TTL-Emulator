@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
         <title>{% block title %}TTL-Emulator{% endblock %}</title>
-        <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     </head>
     <body>
         <div class="container">
@@ -14,21 +14,27 @@
                         <label for="cfreq">Frequency (ex: 1 for 1Hz, 1,000 for 1kHz)</label><br/>
                         <input type="number" id="cfreq" name="cfreq"><br/>
                         <label for="cwidth">Pulse Width (ex: 1 for 1μs, 100 for 1ms)</label><br/>
-                        <input type="number" id="cwidth" name="cwidth"><br/><br/>
-                        <button type="submit" class="btn btn-success">Clock</button>
+                        <input type="number" id="cwidth" name="cwidth"><br/>
+                        <button type="submit" class="btn btn-success" name="clock">Clock</button>
                     </form>
                 </div>
                 <div class="col-6">
                     <form method="random" enctype="text/plain">
-                        <label for="rmin rmax">Average frequency (ex: min=1 max=10 for ~10Hz)</label><br/>
-                        <input type="number" id="rmin" name="rmin"><br/>
-                        <input type="number" id="rmax" name="rmax"><br/>
+                        <label for="rfreq">Centralized Frequency (ex: 100 =&gt; ~100Hz)</label><br/>
+                        <input type="number" id="rfreq" name="rfreq"><br/>                        
                         <label for="rwidth">Pulse Width (ex: 1 for 1μs, 100 for 1ms)</label><br/>
                         <input type="number" id="rwidth" name="rwidth"><br/>
-                        <button type="submit" class="btn btn-success">Random</button>
+                        <button type="submit" class="btn btn-success" name="random">Random</button>
                     </form>
                 </div>
             </div>
+            <button class="btn btn-danger p-5 mb-4 bg-body-tertiary rounded-3" type="button" name="stop">
+                <div class="container-fluid py-5">
+                  <h1 class="display-5 fw-bold">STOP</h1>
+                </div>
+            </button>
         </div>
+        <script src="bootsrap/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
